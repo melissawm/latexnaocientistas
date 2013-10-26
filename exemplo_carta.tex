@@ -1,0 +1,35 @@
+\documentclass{letter}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage[portuguese]{babel}
+\usepackage{lipsum}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+\fancyhead[C]{\includegraphics[width=4cm]{cc.png} }
+\cfoot{\textsc{NOME DA SUA EMPRESA\\(48) XXXX-XXXX, (48) XXXX-XXXX\\ FAX (48) XXXX-XXXX}}
+\renewcommand{\headheight}{31pt}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+\signature{Melissa Weber Mendonça}
+\address{Campus Universitário, 88000-000\\Florianópolis, SC}
+
+\begin{document}
+   \begin{letter}
+      {
+         Destinatário -- Empresa\\
+         R. dos Bobos, 0\\
+         88000-000, Cidade, ES
+      }
+      
+      \opening{Caro Sr. Fulano,}
+     
+      \thispagestyle{fancy}
+     
+      \lipsum[1-2]
+      
+      \closing{Atenciosamente,}
+      
+   \end{letter}
+\end{document}

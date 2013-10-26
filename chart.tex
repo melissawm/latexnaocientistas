@@ -1,0 +1,23 @@
+\documentclass{article}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage{tikz}
+\usepackage{txfonts}
+\begin{document}
+\newcommand{\slice}[5]{\pgfmathparse{0.5*#1+0.5*#2}\let\midangle\pgfmathresult 
+% slice
+\draw[thick,fill=blue!#5!white] (0,0) -- (#1:1) arc (#1:#2:1) -- cycle;
+% outer label
+\node[label=\midangle:#4] at (\midangle:1) {};
+% inner label
+\pgfmathparse{min((#2-#1-10)/110*(-0.3),0)} \let\temp\pgfmathresult \pgfmathparse{max(\temp,-0.5) + 0.8} \let\innerpos\pgfmathresult \node[rectangle, fill=white] at (\midangle:\innerpos) {#3};}
+\begin{tikzpicture}[scale=3]
+\newcounter{a}
+\newcounter{b}
+\foreach \p/\t in {
+7/OpenSUSE,6/Fedora,6/Slackware,30/Ubuntu,5/Chakra,5/Gentoo,26/Outras,15/Debian
+} {
+\setcounter{a}{\value{b}} \addtocounter{b}{\p} \slice{\thea/100*360} {\theb/100*360} {\p\%}{\t}{\theb}
+}
+\end{tikzpicture}
+\end{document}

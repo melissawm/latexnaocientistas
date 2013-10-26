@@ -1,0 +1,30 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{shapes, arrows}
+\usepackage[utf8]{inputenc}
+   
+\begin{document}
+   % Definir estilo dos blocos
+   \tikzstyle{decision} = [diamond, draw, fill=blue!20, text width=4.5em, text centered, node distance=2cm, inner sep=0pt]
+   \tikzstyle{block} = [rectangle, draw, fill=blue!20, text width=5em, text centered, rounded corners]
+   \tikzstyle{line} = [draw, -latex']
+   \tikzstyle{cloud} = [draw, ellipse,fill=red!20, node distance=2cm]
+   \begin{tikzpicture}[node distance = 1cm, auto]
+      % Nós
+      \node [block] (init) {inicializar};
+      \node [cloud, left of=init] (dados) {dados};
+      \node [block, below of=init] (identify) {identificar modelo};
+      \node [block, below of=identify] (evaluate) {avaliar modelo};
+      \node [block, left of=evaluate, node distance=2cm] (update) {atualizar modelo};
+      \node [decision, below of=evaluate] (decide) {o modelo é válido?};
+      \node [block, below of=decide, node distance=2cm] (stop) {pare};
+      % Arestas
+      \path [line] (init) -- (identify);
+      \path [line] (identify) -- (evaluate);
+      \path [line] (evaluate) -- (decide);
+      \path [line] (decide) -| node [near start] {não} (update);
+      \path [line] (update) |- (identify);
+      \path [line] (decide) -- node {sim}(stop);
+      \path [line,dashed] (dados) -- (init);
+   \end{tikzpicture}
+\end{document}
